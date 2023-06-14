@@ -2,7 +2,7 @@ import { test, expect } from '@jest/globals';
 
 import { orderByProps, extractSpecialAttacks } from '../orderByProps';
 
-test('orderByProps - returns properties in the specified order', () => {
+test('orderByProps - возвращает свойства в указанном порядке', () => {
   const obj = { name: 'John', age: 30, city: 'New York' };
   const order = ['age', 'name'];
   const expected = [
@@ -14,7 +14,7 @@ test('orderByProps - returns properties in the specified order', () => {
   expect(result).toEqual(expected);
 });
 
-test('orderByProps - returns properties in alphabetical order if not specified in order', () => {
+test('orderByProps - возвращает свойства в алфавитном порядке, если порядок не указан', () => {
   const obj = { name: 'John', age: 30, city: 'New York' };
   const expected = [
     { key: 'age', value: 30 },
@@ -25,7 +25,7 @@ test('orderByProps - returns properties in alphabetical order if not specified i
   expect(result).toEqual(expected);
 });
 
-test('extractSpecialAttacks - returns special attacks with default description if not available', () => {
+test('extractSpecialAttacks - возвращает специальные атаки с предустановленным описанием, если они недоступны', () => {
   const character = {
     special: [
       { id: 1, name: 'Attack 1', icon: 'icon1' },
