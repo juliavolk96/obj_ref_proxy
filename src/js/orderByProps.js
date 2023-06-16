@@ -1,16 +1,25 @@
 export function orderByProps(obj, order) {
-  const props = Object.keys(obj).sort((a, b) => {
-    if (order.includes(a) && order.includes(b)) {
-      return order.indexOf(a) - order.indexOf(b);
-    } if (order.includes(a)) {
-      return -1;
-    } if (order.includes(b)) {
-      return 1;
-    }
-    return a.localeCompare(b);
-  });
+  const orderedProps = [];
+  const remainingProps = [];
 
-  return props.map((prop) => ({ key: prop, value: obj[prop] }));
+  /* eslint-disable no-restricted-syntax */
+  /* eslint-disable guard-for-in */
+  for (const prop in obj) {
+    if (order.includes(prop)) {
+      orderedProps.push({ key: prop, value: obj[prop] });
+    } else {
+      remainingProps.push(prop);
+    }
+  }
+
+  remainingProps.sort();
+
+  /* eslint-disable no-restricted-syntax */
+  for (const prop of remainingProps) {
+    orderedProps.push({ key: prop, value: obj[prop] });
+  }
+
+  return orderedProps;
 }
 
 export function extractSpecialAttacks({ special }) {

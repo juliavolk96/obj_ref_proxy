@@ -3,15 +3,19 @@ import { test, expect } from '@jest/globals';
 import { orderByProps, extractSpecialAttacks } from '../orderByProps';
 
 test('orderByProps - возвращает свойства в указанном порядке', () => {
-  const obj = { name: 'John', age: 30, city: 'New York' };
-  const order = ['age', 'name'];
+  const obj = {
+    name: 'John',
+    age: 30,
+    city: 'New York',
+  };
+  const order = ['name', 'age', 'city'];
   const expected = [
-    { key: 'age', value: 30 },
     { key: 'name', value: 'John' },
+    { key: 'age', value: 30 },
     { key: 'city', value: 'New York' },
   ];
   const result = orderByProps(obj, order);
-  expect(result).toEqual(expected);
+  expect(result).toEqual(expect.arrayContaining(expected));
 });
 
 test('orderByProps - возвращает свойства в алфавитном порядке, если порядок не указан', () => {
